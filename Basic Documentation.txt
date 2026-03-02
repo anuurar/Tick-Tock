@@ -1,3 +1,4 @@
 # Tick-Tock
 A Basic Clock App that gives time, can set alarms, timers and be used as stopwatch whenever required using time header files and graphics in C Language for school project.
-First, We used the time() function that gives us time since epoch, which is 1st January 1970 A.D.
+First, We used the time() function that gives us time since epoch, which is 1st January 1970 A.D. 00:00:00 UTC.
+We converted the time which is in seconds to years, days, minutes, and seconds which automatically tells us the current time in UTC since the timer started from 00:00:00 UTC.
