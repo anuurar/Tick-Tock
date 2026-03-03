@@ -1,4 +1,10 @@
-# Tick-Tock
+Tick-Tock
 A Basic Clock App that gives time, can set alarms, timers and be used as stopwatch whenever required using time header files and graphics in C Language for school project.
 First, We used the time() function that gives us time since epoch, which is 1st January 1970 A.D. 00:00:00 UTC.
 We converted the time which is in seconds to years, days, minutes, and seconds which automatically tells us the current time in UTC since the timer started from 00:00:00 UTC.
+But the years and days obtained this way is inconsistent due to the existence of leap years. But we can safely ignore that inconsistency as all we need is the hour, minutes and seconds passed which counts as the time of the day.
+For further continuation of the project, We would like to take those time of the day and print them in graphics mode using graphics.h header file.
+graphics.h header file provides us with the necessary functions to display the time using graphics.
+First, The graphics must be initialized using initgraph() function. It takes the graphdriver which is detected using DETECT, graphmode and the path to the graph driver.
+Then, despite initial plans being to display the numbers by creating each individual numbers allowing us to style them ourselves,we settled to using outtextxy() function the prints the required texts in the specified co-ordinates.
+We converted the time in integers to string using the sprintf() function that takes the string variable first and then the format specifiers and the integer(or other) variables similar to fprintf replacing the file pointer to character array pointer or in siimpler terms string variable.

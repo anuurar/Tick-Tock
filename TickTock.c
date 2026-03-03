@@ -3,9 +3,11 @@
 
 int main()
 {
-    int s,m,h,d,y;   
+    int s,m,h,d,y;
     time_t now;
     long t;
+
+    clrscr();
 
     now = time(NULL);//Passing NULL to only get a return value.
     t = (long)now;
@@ -27,8 +29,9 @@ int main()
     t = t / 365;//converts t to complete years only.
 
     y = t;//store the no. of years in y.
-    
+
     printf("\nTime since epoch is %d years, %d days, %d hours, %d minutes, %d seconds.",y,d,h,m,s);
 
+    getch();
     return 0;
 }
