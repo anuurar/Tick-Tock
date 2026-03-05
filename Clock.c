@@ -6,6 +6,7 @@ int main()
     int s,m,h,d,y;
     time_t now;
     long t;
+    char time_str[10];//To store the time in HH:MM:SS format.
 
     clrscr();
 
@@ -30,7 +31,7 @@ int main()
 
     y = t;//store the no. of years in y.
 
-    sprintf(time_str,"%02d:%02d:%02d",h,m,s);
+    sprintf(time_str,"%02d:%02d:%02d",h,m,s);//Storing the time in hh:mm:ss format.
 
     printf("\nTime since epoch is %s",time_str);
 
