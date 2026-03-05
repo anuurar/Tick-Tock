@@ -30,7 +30,9 @@ int main()
 
     y = t;//store the no. of years in y.
 
-    printf("\nTime since epoch is %d years, %d days, %d hours, %d minutes, %d seconds.",y,d,h,m,s);
+    sprintf(time_str,"%02d:%02d:%02d",h,m,s);
+
+    printf("\nTime since epoch is %s",time_str);
 
     getch();
     return 0;
