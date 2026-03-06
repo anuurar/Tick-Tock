@@ -25,7 +25,7 @@ int main()
 	}
     }
 
-    while(key!=27)
+    while(key!=27)//Until esc key is pressed.
     {
         if(kbhit())
         {
