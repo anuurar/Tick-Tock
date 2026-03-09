@@ -137,14 +137,36 @@ void timer()
 
 void stopwatch()
 {
+	int key = 0;
+	clock_t start,now;
+	double time_elapsed = 0.0;
+	int control=2;//cotrols the two modes... running and stopping.
 	clrscr();
 
-	while(checkExit())
+	printf("Press Ener Key to Start / Stop Stopwatch:");
+
+
+	start = clock();//Storing the initial clock ticks.
+
+	while(key!=27)
 	{
 		clrscr();
 		checkAlarm();
 
-		printf("\nStopwatch");
+		now = clock();//Storing current clock ticks
+
+		if(kbhit()) key = getch();//Getting keyboard input (if any)
+		else key = 0;//Reinitializing key;
+
+		if(key == 13) {control++;}//printf("%d",control);getch();}//Swtiching modes
+
+		if(control % 2 == 0)
+			time_elapsed = (double)(now - start) / CLOCKS_PER_SEC;//Calculating time elspsed in seconds
+		else if (control % 2 == 1)
+			start = now - (clock_t)time_elapsed * CLOCKS_PER_SEC;//Changing start time to freeze stopwtach
+
+		printf("%.3lf",time_elapsed);
+
 		delay(50);
 	}
 }
@@ -217,7 +239,7 @@ void ring()
 	//This buffer filter replaces all else filter.
 	if(kbhit()) getch();//Buffer filter.
 
-	sound(650);
+	sound(1000);
 	delay(300);
 	nosound();
 }
