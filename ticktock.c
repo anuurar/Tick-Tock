@@ -27,6 +27,7 @@ int main()
 	while(key!= 27)
 	{
 		clrscr();
+		checkAlarm();
 
 		//if(kbhit()) getch();//Buffer filter.
 		//This filter was used to filter the  excess input from timer.
@@ -37,14 +38,17 @@ int main()
 		printf("\n Press 3 for stopwatch");
 		printf("\n Press 4 to set alarm clock");
 
-		key = getch();
+		if(kbhit()) key = getch();//Getting keyboard input (if any)
+		else key = 0;//Reinitializing key;
 
 		if(key == 49) UTCclock();
 		else if(key == 50) timer();
 		else if(key == 51) stopwatch();
 		else if(key == 52) setAlarm();
-		else if(key == 27) {printf("\nExiting...");delay(500);}
-		else {printf("\nInvalid Input!");delay(500);}
+		else if(key == 27) printf("\nExiting...");
+		//else {printf("\nInvalid Input!");delay(500);}
+
+		delay(500);
 	}
 	return 0;
 }
@@ -173,7 +177,7 @@ void stopwatch()
 void setAlarm()
 {
 	FILE *fp;
-	int h,m;
+	long h,m;
 
 	clrscr();
 
@@ -183,7 +187,7 @@ void setAlarm()
 	checkAlarm();
 
 	printf("\nEnter the Alarm hour and minutes you want to set:");
-	scanf("%d %d", &h, &m);
+	scanf("%ld %ld", &h, &m);
 
 	alarm_seconds[count_alarms] = h*3600 + m*60;//Converting the alarm time to seconds only.
 	count_alarms++;
@@ -206,10 +210,10 @@ void checkAlarm()
 
 	for(i=0;i<count_alarms;i++)
 	{
-	if(alarm_seconds[i] == current_seconds)
-	{
-		ring();
-	}
+		if(alarm_seconds[i] == current_seconds)
+		{
+			ring();
+		}
 	}
 }
 
