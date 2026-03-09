@@ -170,12 +170,15 @@ void stopwatch()
 
 		if(key == 13) {control++;}//printf("%d",control);getch();}//Swtiching modes
 
+		printf("%.3lf",(double)time_elapsed / CLOCKS_PER_SEC);
+
 		if(control % 2 == 0)
 			time_elapsed = (now - start);//Calculating time elspsed in seconds.
 		else if (control % 2 == 1)
+		{
+			printf("\nTOKI WO TOMARE!!");
 			start = now - time_elapsed;
-
-		printf("%.3lf",(double)time_elapsed / CLOCKS_PER_SEC);
+		}
 
 		delay(50);
 	}
@@ -219,6 +222,7 @@ void checkAlarm()
 	{
 		if(alarm_seconds[i] == current_seconds)
 		{
+			printf("Ring Digi Ding Ding!!");
 			ring();
 		}
 	}
