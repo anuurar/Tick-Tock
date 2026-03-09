@@ -14,7 +14,6 @@ void timer();
 void stopwatch();
 void setAlarm();
 void checkAlarm();
-int checkExit();//Loop control function that checks for esc key press
 void ring();//Rings until a key is pressed.
 
 int main()
@@ -76,14 +75,18 @@ void initialize()
 
 void UTCclock()
 {
+	int key;
 	time_t now;
 	long t;
 	int h,m,s;
 
-	while(checkExit())
+	while(key!= 27)
 	{
 		clrscr();
 		checkAlarm();//Checks if any alarm nneds to be rung.
+
+		if(kbhit()) key = getch();//Getting keyboard input (if any)
+		else key = 0;//Reinitializing key;
 
 		now = time(NULL);//Pass null to just get the seconds
 
@@ -105,6 +108,7 @@ void UTCclock()
 
 void timer()
 {
+	int key;
 	clock_t start,now;
 	double time_elapsed = 0.0,wait_time,time_left;
 
@@ -115,10 +119,13 @@ void timer()
 
 	start = clock();//Storing the initial clock ticks.
 
-	while(checkExit())
+	while(key!= 27)
 	{
 		clrscr();
 		checkAlarm();
+
+		if(kbhit()) key = getch();//Getting keyboard input (if any)
+		else key = 0;//Reinitializing key;
 
 		now = clock();//Storing current clock ticks.
 
@@ -156,10 +163,10 @@ void stopwatch()
 		clrscr();
 		checkAlarm();
 
-		now = clock();//Storing current clock ticks
-
 		if(kbhit()) key = getch();//Getting keyboard input (if any)
 		else key = 0;//Reinitializing key;
+
+		now = clock();//Storing current clock ticks
 
 		if(key == 13) {control++;}//printf("%d",control);getch();}//Swtiching modes
 
@@ -215,18 +222,6 @@ void checkAlarm()
 			ring();
 		}
 	}
-}
-
-int checkExit()
-{
-	int key = 0;
-
-	if(kbhit()) key = getch();
-
-	if(key == 27)
-		return 0;
-	else
-		return 1;
 }
 
 void ring()
