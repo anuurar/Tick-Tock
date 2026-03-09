@@ -21,3 +21,4 @@ The first mode uses the basic idea of timer function to run stopwatch while the 
 But due to using different data types... being clock_t and double, there was slight loss of data each time it was stopped causing it to reset back a few milliseconds.
 To counter that problem, We trie to change time_elapsed to clock_t and only change the value during printing and while it didnt fix the problem completely... It did make it bearable as the time is now shifted forward a few seconds due to the latency of the input output rather than the data loss.
 Moreover, The alarm was unfunctional due to the usage of int for taking hours and minutes during setting of alarm, so we changed it to double to solve that error.
+Theres some fun references for F1 and JOJO'S fans!!
