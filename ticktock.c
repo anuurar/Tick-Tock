@@ -137,9 +137,8 @@ void timer()
 
 void stopwatch()
 {
-	int key = 0;
-	clock_t start,now;
-	double time_elapsed = 0.0;
+	int key;
+	clock_t start,now,time_elapsed = 0.0;
 	int control=2;//cotrols the two modes... running and stopping.
 	clrscr();
 
@@ -161,11 +160,11 @@ void stopwatch()
 		if(key == 13) {control++;}//printf("%d",control);getch();}//Swtiching modes
 
 		if(control % 2 == 0)
-			time_elapsed = (double)(now - start) / CLOCKS_PER_SEC;//Calculating time elspsed in seconds
+			time_elapsed = (now - start);//Calculating time elspsed in seconds.
 		else if (control % 2 == 1)
-			start = now - (clock_t)time_elapsed * CLOCKS_PER_SEC;//Changing start time to freeze stopwtach
+			start = now - time_elapsed;
 
-		printf("%.3lf",time_elapsed);
+		printf("%.3lf",(double)time_elapsed / CLOCKS_PER_SEC);
 
 		delay(50);
 	}
