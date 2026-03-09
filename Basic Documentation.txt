@@ -17,6 +17,7 @@ Then we added the alarm function in the main program which stores and retrieves 
 A Limitation of the alarm function is that it doesnt run when the program halts either in delay or for input which causes minor bugs in the function.
 Reusing the program for timer, we created a program for the stopwatch that uses a similar concept but starts and stops with the enter key.
 We did so by making use of a control variable which keeps on increasing on enter press and using its modulus with 2 to switch between the required modes.
-The first modde uses the basic idea of timer function to run stopwatch while the second mode changes start time to freeze the time_elapsed data so it can start again without being counted during the period it was frozen.
+The first mode uses the basic idea of timer function to run stopwatch while the second mode changes start time to freeze the time_elapsed data so it can start again without being counted during the period it was frozen.
 But due to using different data types... being clock_t and double, there was slight loss of data each time it was stopped causing it to reset back a few milliseconds.
-TO counter that problem, We trie to change time_elapsed to clock_t and only change the value during printing and while it didnt fix the problem completely... It did make it bearable as the time is now shifted forward a few seconds due to the latency of the input output rather than the data loss.
+To counter that problem, We trie to change time_elapsed to clock_t and only change the value during printing and while it didnt fix the problem completely... It did make it bearable as the time is now shifted forward a few seconds due to the latency of the input output rather than the data loss.
+Moreover, The alarm was unfunctional due to the usage of int for taking hours and minutes during setting of alarm, so we changed it to double to solve that error.
